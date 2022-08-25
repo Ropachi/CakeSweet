@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www/thymeleaf.org">
+<head>
+    <title>Welcome Page</title>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8">
+    <link href="../static/css/mystyle.css" th:href="@{/css/mystyle.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:include="header :: headerA"></div>
+<div th:if="${logname} != 'kiOYuT49HiJ8' and ${logname} != null">
+    <h3 th:text="*{logname} + '様'"/>
+    <table>
+        <tr>
+            <td><a th:href="@{/createcos}">コース新規申し込み</a></td>
+            <td><a th:href="@{/edit}">アカウント修正</a></td>
+            <td><a th:href="@{/logout}">ログアウト</a></td>
+        </tr>
+    </table>
+</div>
+<div th:if="${logname} == 'kiOYuT49HiJ8'">
+    <table>
+        <tr>
+            <td><a th:href="@{/login}">ログイン</a></td>
+            <td><a th:href="@{/create}">アカウント新規作成</a></td>
+        </tr>
+    </table>
+</div>
+<br/>
+
+<div class="content">
+    <p>ケーキ店Sweetが 3ヶ月間、毎週金曜日に毎回異なるケーキをお届けする<br>各種コースのご案内です。</p>
+    <h3 class="icon">徹底甘いものコース</h3>
+    <img class=imageA src="../static/img/sweet.jpg"
+         th:src="@{img/sweet.jpg}"/>
+    <p class="explain">ケーキは甘いもの、という甘いもの大好きな方のための<br>コースです。各ケーキは甘さを強調したテイストで毎回<br>お届けします。</p><br>
+    <h3 class="icon">大人のビターコース</h3>
+    <img class=imageA src="../static/img/Bitter.jpg"
+         th:src="@{img/Bitter.jpg}"/>
+    <p class="explain">甘さを抑えた渋め志向のケーキをお届けします。<br>甘いものは苦手という方でも楽しめるコースとなっています。</p><br>
+    <h3 class="icon">ボリューム志向コース</h3>
+    <img class=imageA src="../static/img/Volume.jpg"
+         th:src="@{img/Volume.jpg}"/>
+    <p class="explain">毎回ケーキを思いっきり楽しみたい方のための量を多めに<br>したお届けコースです。</p><br>
+    <h3 class="icon">アラカルトコース</h3>
+    <img src="../static/img/various.jpg"
+         th:src="@{img/various.jpg}"/>
+    <p class="explain">上記の3コースをミックスした内容で、毎回いろいろなテイ<br>ストを楽しみたい方のためのコースです</p>
+</div>
+
+<!--footer-->
+<div th:include="footer :: footerA"></div>
+
+</body>
+
+</html>

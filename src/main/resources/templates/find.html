@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www/thymeleaf.org">
+<head>
+    <title>find page</title>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8">
+    <link href="../static/css/mystyle.css" th:href="@{/css/mystyle.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<div th:include="header :: headerA"></div>
+<div class="content">
+    <h1>Find page</h1>
+    <p th:text="${msg}"></p>
+    <table>
+        <form action="/find" method="post">
+            <tr>
+                <td>Find:</td>
+                <td><input type="text" name="fstr" size="20"
+                           th:value="${value}"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="OK"/></td>
+            </tr>
+        </form>
+    </table>
+    <hr/>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>メール</th>
+            <th>パスワード</th>
+        <tr th:each="obj : ${datalist}">
+            <td th:text="${obj.id}"></td>
+            <td th:text="${obj.name}"></td>
+            <td th:text="${obj.mail}"></td>
+            <td th:text="${obj.psw}"></td>
+        </tr>
+    </table>
+</div>
+
+<!--footer-->
+<div th:include="footer :: footerA"></div>
+
+</body>
+</html>

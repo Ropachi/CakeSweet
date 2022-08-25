@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www/thymeleaf.org">
+<head>
+    <title>Course list</title>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8">
+    <link href="../static/css/mystyle.css" th:href="@{/css/mystyle.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<div th:include="header :: headerA"></div>
+<div class="content">
+    <p>定額ケーキ Sweet 現在の全オーダーリスト</p>
+    <table>
+        <tr>
+            <th>CourseID</th>
+            <th>MyDataID</th>
+            <th>Course</th>
+            <th>Period</th>
+            <th>chedit</th>
+            <th>ckdel</th>
+        <tr th:each="obj : ${datalist}">
+            <td th:text="${obj.cosid}"></td>
+            <td th:text="${obj.myid}"></td>
+            <td th:text="${obj.cosname}"></td>
+            <td th:text="${obj.cosmonth}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

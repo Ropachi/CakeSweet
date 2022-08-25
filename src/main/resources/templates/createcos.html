@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www/thymeleaf.org">
+<head>
+    <title>コース申し込み</title>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8">
+    <link href="../static/css/mystyle.css" th:href="@{/css/mystyle.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<div th:include="header :: headerA"></div>
+<h3 th:text="${logname} + '様'"/>
+<table>
+    <tr>
+        <td><a th:href="@{/}">戻る</a></td>
+        <td><a th:href="@{/edit}">アカウント修正</a></td>
+        <td><a th:href="@{/logout}">ログアウト</a></td>
+    </tr>
+</table>
+<br/>
+<div class="content">
+    <table>
+        <h1>希望コース選択</h1>
+        <form method="post" action="/createcos" th:object="${cosModel}">
+            <input type="hidden" name="cosid" th:value="*{cosid}"/>
+            <input type="hidden" name="myid" th:value="*{myid}"/>
+
+            <tr>
+                <td><label>希望コース</label></td>
+                <td><select th:value="*{cosname}" size="4" id="cosname" name="cosname">
+                    <option>徹底甘いものコース</option>
+                    <option>大人のビターコース</option>
+                    <option>ボリューム志向コース</option>
+                    <option>アラカルトコース</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label>配達期間</label></td>
+            </tr>
+            <td><input type="radio" name="cosmonth" value="1"/>1ヶ月</td>
+            <td><input type="radio" name="cosmonth" value="2"/>2ヶ月</td>
+            <td><input type="radio" name="cosmonth" value="3"/>3ヶ月</td>
+            <tr>
+                <td><input type="submit" value="申し込み" class="button"/></td>
+            </tr>
+        </form>
+    </table>
+</div>
+
+</body>
+</html>

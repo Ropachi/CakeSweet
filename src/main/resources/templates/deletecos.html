@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www/thymeleaf.org">
+<head>
+    <title>Delete Course</title>
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=UTF-8">
+    <link href="../static/css/mystyle.css" th:href="@{/css/mystyle.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<div class="content">
+    <h1>Course Delete</h1>
+    <table>
+        <form method="post" action="/deletecos" th:object="${cosModel}">
+            <input type="hidden" name="cosid" th:value="*{cosid}"/>
+            <tr>
+                <td><p th:text="*{myid}"></p></td>
+            </tr>
+            <tr>
+                <td><p th:text="*{cosname}"></p></td>
+            </tr>
+            <tr>
+                <td><p th:text="*{cosmonth}"></p></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="削除" class="button"/></td>
+            </tr>
+        </form>
+    </table>
+</div>
+
+<!--footer-->
+<div th:include="footer :: footerA"></div>
+
+</body>
+</html>
