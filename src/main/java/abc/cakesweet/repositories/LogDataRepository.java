@@ -1,3 +1,4 @@
+//ログイン用データモデルリポジトリ
 package abc.cakesweet.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface LogDataRepository extends JpaRepository<LogData, Long> {
+    //ログイン用個人をIDで検索
     public Optional<LogData> findByLogid(long logid);
 }
 

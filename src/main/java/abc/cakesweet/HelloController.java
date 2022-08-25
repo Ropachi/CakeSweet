@@ -1,3 +1,4 @@
+//メインコントロールクラス
 package abc.cakesweet;
 
 import javax.annotation.PostConstruct;

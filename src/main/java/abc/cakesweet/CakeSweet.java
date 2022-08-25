@@ -1,3 +1,4 @@
+//アプリケーションクラス
 package abc.cakesweet;
 
 import org.springframework.boot.SpringApplication;

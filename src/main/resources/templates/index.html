@@ -1,3 +1,4 @@
+<!--ホーム用画面-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www/thymeleaf.org">
@@ -8,6 +9,7 @@
     <link href="../static/css/mystyle.css" th:href="@{/css/mystyle.css}" rel="stylesheet"/>
 </head>
 <body>
+<!--ヘッダー部挿入-->
 <div th:include="header :: headerA"></div>
 <div th:if="${logname} != 'kiOYuT49HiJ8' and ${logname} != null">
     <h3 th:text="*{logname} + '様'"/>
@@ -28,7 +30,7 @@
     </table>
 </div>
 <br/>
-
+<!--メイン部-->
 <div class="content">
     <p>ケーキ店Sweetが 3ヶ月間、毎週金曜日に毎回異なるケーキをお届けする<br>各種コースのご案内です。</p>
     <h3 class="icon">徹底甘いものコース</h3>
@@ -49,7 +51,7 @@
     <p class="explain">上記の3コースをミックスした内容で、毎回いろいろなテイ<br>ストを楽しみたい方のためのコースです</p>
 </div>
 
-<!--footer-->
+<!--フッター部挿入-->
 <div th:include="footer :: footerA"></div>
 
 </body>

@@ -104,11 +104,13 @@ pre {
     border-left: 4px solid #b433a7;
 }
 
+/*フッター部の水平線*/
 .linehf {
     color:#b433a7;
     margin-up: 20px;
 }
 
+/*フッター部*/
 .footer {
     font-size: 1.3vw;
     font-color: black;

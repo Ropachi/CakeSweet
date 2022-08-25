@@ -1,3 +1,4 @@
+//個人データモデル
 package abc.cakesweet;
 
 import javax.persistence.Column;

@@ -1,3 +1,4 @@
+//ログイン用データモデル
 package abc.cakesweet;
 
 import javax.persistence.Column;
