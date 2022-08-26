@@ -42,9 +42,10 @@ public class HelloController {
     String login_name = null;
     String login_psw = null;
 
+    //インスタンス生成時に処理
     @PostConstruct
     public void init() {
-        //logdata
+        //logdata: loginからindexへの移動時の変数を渡すためのデータセット
         LogData d1 = new LogData();
         d1.setLogid((long) 1);
         d1.setLogname("kiOYuT49HiJ8");
@@ -55,6 +56,7 @@ public class HelloController {
     @PersistenceContext
     EntityManager entityManager;  //field定義
 
+    //メインindexページ処理
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index(
             @ModelAttribute("formModel") MyData mydata,
@@ -80,6 +82,7 @@ public class HelloController {
         return mav;
     }
 
+    //ログインページ:GET
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(
             ModelAndView mav) {
@@ -96,6 +99,7 @@ public class HelloController {
 
     int ret = 0;
 
+    //ログインページ:POST
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login2(
             @RequestParam("name") String login_name,
@@ -123,17 +127,21 @@ public class HelloController {
                 ret = 2;  //該当するデータがなかったのでアウト
             }
         } catch (Exception e) {
+            //何らかのエラー発生があるとアウト
             ret = 2;
         } finally {
             //return new ModelAndView("redirect:/login");
         }
+        //ログインできればindexページへ移動
         if (ret == 1) {
             return new ModelAndView("redirect:/");
         } else {
+            //ログインできなければ再度入力のため留まる
             return new ModelAndView("redirect:/login");
         }
     }
 
+    //アカウント作成ページ: GET
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView create(@ModelAttribute("formModel") MyData mydata,
                                ModelAndView mav) {
@@ -152,6 +160,7 @@ public class HelloController {
         return mav;
     }
 
+    //アカウント作成ページ: POST
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @Transactional(readOnly = false)
     public ModelAndView create2(
@@ -197,7 +206,7 @@ public class HelloController {
         return res;
     }
 
-
+    //予約ページ: GET
     @RequestMapping(value = "/createcos", method = RequestMethod.GET)
     public ModelAndView createcos(
             @ModelAttribute("cosModel") CosData cosdata,
@@ -219,15 +228,17 @@ public class HelloController {
         return mav;
     }
 
+    //予約ページ: POST
     @RequestMapping(value = "/createcos", method = RequestMethod.POST)
     @Transactional(readOnly = false)
     public ModelAndView createcos2(
             @ModelAttribute("cosModel") CosData cosdata,
             ModelAndView mav) {
+        //予約用データセットへ顧客Idをセット
         if (login_id != null) {
             cosdata.setMyid(login_id);
         }
-        updatecos(cosdata, mav);
+        updatecos(cosdata, mav); //データを保存
         return new ModelAndView("redirect:/");
     }
 
@@ -241,6 +252,7 @@ public class HelloController {
         return mav;
     }
 
+    //アカウント削除ページ: GET
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @Transactional(readOnly = false)
     public ModelAndView remove(@RequestParam long id,
@@ -249,6 +261,7 @@ public class HelloController {
         return new ModelAndView("redirect:/");
     }
 
+    //予約削除ページ: GET
     @RequestMapping(value = "/deletecos/{cosid}", method = RequestMethod.GET)
     public ModelAndView deletecos(@PathVariable Long cosid,
                                   ModelAndView mav) {
@@ -259,6 +272,7 @@ public class HelloController {
         return mav;
     }
 
+    //予約削除ページ: POST
     @RequestMapping(value = "/deletecos", method = RequestMethod.POST)
     @Transactional(readOnly = false)
     public ModelAndView removecos(@RequestParam Long cosid,
@@ -267,6 +281,7 @@ public class HelloController {
         return new ModelAndView("redirect:/");
     }
 
+    //アカウント修正ページ: GET
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView edit(@ModelAttribute MyData mydata,
                              ModelAndView mav) {
@@ -280,6 +295,7 @@ public class HelloController {
         return mav;
     }
 
+    //アカウント修正ページ:POST
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @Transactional(readOnly = false)
     public ModelAndView edit2(@ModelAttribute MyData mydata,
@@ -297,6 +313,7 @@ public class HelloController {
         return res;
     }
 
+    //ログアウトページ:GET
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ModelAndView logout(
             @ModelAttribute("formModel") MyData mydata,
@@ -305,6 +322,7 @@ public class HelloController {
         return mav;
     }
 
+    //ログアウトページ:POST
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     @Transactional(readOnly = false)
     public ModelAndView logout2(@RequestParam("name") String login_name,
@@ -318,6 +336,7 @@ public class HelloController {
         return new ModelAndView("redirect:/");
     }
 
+    //アカウント一覧ページ:GET
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView list(
             @ModelAttribute("formModel") MyData mydata,
@@ -329,6 +348,7 @@ public class HelloController {
         return mav;
     }
 
+    //アカウント一覧ページ:POST
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     @Transactional(readOnly = false)
     public ModelAndView list2(
@@ -338,7 +358,7 @@ public class HelloController {
         return new ModelAndView("redirect:/");
     }
 
-    //現在の全オーダーリスト表示
+    //現在の全オーダーリスト表示:GET
     @RequestMapping(value = "/listcos", method = RequestMethod.GET)
     public ModelAndView listcos(
             @ModelAttribute("cosModel") CosData cosdata,
@@ -350,6 +370,7 @@ public class HelloController {
         return mav;
     }
 
+    //現在の全オーダーリスト表示:POST
     @RequestMapping(value = "/listcos", method = RequestMethod.POST)
     @Transactional(readOnly = false)
     public ModelAndView listcos2(
@@ -359,24 +380,28 @@ public class HelloController {
         return new ModelAndView("redirect:/");
     }
 
+    //顧客データ保存
     public ModelAndView update(MyData mydata,
                                ModelAndView mav) {
         repository.saveAndFlush(mydata);
         return mav;
     }
 
+    //予約データ保存
     public ModelAndView updatecos(CosData cosdata,
                                   ModelAndView mav) {
         cosrepository.saveAndFlush(cosdata);
         return mav;
     }
 
+    //変数データ保存
     public ModelAndView updatelog(LogData logdata,
                                   ModelAndView mav) {
         logrepository.saveAndFlush(logdata);
         return mav;
     }
 
+    //顧客データから名前でレコード検索
     public MyData findByName(String sname) {
         String qstr = "SELECT c FROM MyData c WHERE c.name = :fname";
         Query query = entityManager.createQuery(qstr, MyData.class);
@@ -385,6 +410,7 @@ public class HelloController {
         return list;
     }
 
+    //顧客データから 名前とパスワードのセットでレコード検索
     public Optional<MyData> findByNameAndPsw(String sname, String spsw) {
         String qstr = "SELECT c FROM MyData c WHERE c.name = :fname and c.psw = :fpsw";
         Query query = entityManager.createQuery(qstr, MyData.class);

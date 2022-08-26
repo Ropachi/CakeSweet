@@ -10,6 +10,7 @@ import javax.persistence.Table;
 //import javax.validation.constraints.NotNull;
 //import org.hibernate.validator.constraints.NotEmpty;
 
+//予約データ作成
 @Entity
 @Table(name = "cosdata")
 

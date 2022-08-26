@@ -13,6 +13,7 @@ import javax.persistence.Table;
 //import javax.validation.constraints.Min;
 //import javax.validation.constraints.NotEmpty;
 
+//顧客データ作成
 @Entity
 @Table(name = "mydata")
 public class MyData {
@@ -81,6 +82,7 @@ public class MyData {
         return login_name;
     }
 
+//login時、名前とパスワード入力時用変数セット
     public void setLogin_name(String login_name) {
         this.login_name = login_name;
     }

@@ -14,7 +14,7 @@ public interface CosDataRepository extends JpaRepository<CosData, Long> {
     //コースデータをIDで検索
     public Optional<CosData> findByCosid(Long cosid);
 
-    //個人データをIDで検索
+    //個人IDで検索
     public List<CosData> findByMyid(Long myid);
 
     //コースデータをIDで削除
